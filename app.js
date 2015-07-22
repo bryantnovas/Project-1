@@ -1,11 +1,9 @@
 $(document).ready(function(){
 	$("img").click(function(){
 		database($(this).attr("alt"));
-		$("#sub-total").text("Subtotal: "+ subtotal.toFixed(2));
+		appendSubtotal();
 		calulateTax();
 		calulateTotal();
-		$("#tax").text("Tax: "+ tax.toFixed(2));
-		$("#total").text("Total: " + total.toFixed(2));
 		$(".table-area").scrollTop(99999999);
 	});
 	$("#print").click(function(){
@@ -14,7 +12,6 @@ $(document).ready(function(){
 	$("#paid").click(function(){
 		subtotal = tip = tax = total = 0;
 		$("#sub-total").text("Subtotal: 0.00");
-		$("#tip").text("Tip: 0.00");
 		$("#tax").text("Tax: 0.00");
 		$("#total").text("Total: 0.00");
 		$(".table-area tbody").empty();
@@ -24,19 +21,14 @@ $(document).ready(function(){
 	$("#calctip").click(function(){
 		calculateTip();
 		calulateTotal();
-		$("#tip").text("Tip: "+tip.toFixed(2));
-		$("#total").text("Total: " + total.toFixed(2));
 	});
 	$("#free").on("click", function(){
 		var $value = $("td:last").text();
 		subtotal -= $value;
 		calulateTax();
 		calculateTip();
+		appendSubtotal();
 		calulateTotal();
-		$("#tip").text("Tip: "+tip.toFixed(2));
-		$("#tax").text("Tax: "+ tax.toFixed(2));
-		$("#sub-total").text("Subtotal: "+ subtotal.toFixed(2));
-		$("#total").text("Total: " + total.toFixed(2));
 		$("td:last").text("-"+ $value);
 	});
 	$("input").keypress(function(e) {
@@ -44,8 +36,8 @@ $(document).ready(function(){
     		var payment = $(this).val();
     		$("#cash").text("Cash: "+ payment);
     		$("#change").text("Change: " +(payment - total).toFixed(2));
-        $(this).val("");
-    }
+        $(this).val("");  
+      }
 	});
 });
 
@@ -74,19 +66,26 @@ var tax = 0;
 
 function calulateTax(){
 	tax = subtotal * 0.0885;
+	$("#tax").text("Tax: "+ tax.toFixed(2));
 }
 
 function calulateTotal(){
 	total = subtotal + tax + tip;
+	$("#total").text("Total: " + total.toFixed(2));
 }
 
 function calculateTip() {
 	tip = subtotal * 0.20;
+	$("#tip").text("Tip: " +tip.toFixed(2));
 }
+
 function appendToDom(item, price) {
 	$(".table-area tbody ").append("<tr> <td>"+item+"</td> <td>1</td> <td>"+price+"</td> </tr>");
 		subtotal += price;
-	} 
+} 
+function appendSubtotal() {
+	$("#sub-total").text("Subtotal: "+ subtotal.toFixed(2));
+}
 
 function database(item) {
 	switch (item) {
