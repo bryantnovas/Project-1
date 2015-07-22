@@ -9,8 +9,8 @@ As in you'll find in many restaurants, I created a web app that can calculate th
 
 - In the input area the user has to type using only numbers the amount of money the client pays and returns the change that the client will receive if any.
 
-- The free button is designed to make the last item on the list free as a gratuity for the client and updates al the values.
+- The free button is designed to make the last item on the list free as a gratuity for the client and updates all the values.
 
-- The paid button asumes that the client paid and all the transactions are done so it will restart the application.
+- The paid button asumes that the client has paid and all the transactions are done, so it will restart the application.
 
 - The print button will print a receipt.
