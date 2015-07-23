@@ -17,6 +17,7 @@ $(document).ready(function(){
 		$(".table-area tbody").empty();
 		$("#cash").text("Cash: 0.00");
     $("#change").text("Change: 0.00");
+    $("#tip").text("Tip: 0.00");
 	});
 	$("#calctip").click(function(){
 		calculateTip();
